@@ -8,7 +8,7 @@ const routes = [
             element: <Mine/>
         },
         {
-            path: "discover",
+            path: "/",
             element: <Discover/>
         },
         {
