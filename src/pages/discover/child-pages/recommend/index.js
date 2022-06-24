@@ -1,13 +1,18 @@
 import React, { memo,useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { getTopBannerAction } from './store/action'
 
 function Recommand(props) {
-    const { getBanners, topBanners } = props;
+
+    const dispatch = useDispatch();
+
+    const { topBanners } = useSelector((state) => ({
+        topBanners: state.recommend.topBanners,
+    }));
 
     useEffect(() => {
-        getBanners();
-    }, []) // componentDidMount.
+        dispatch(getTopBannerAction());
+    }, [dispatch]) // componentDidMount.
 
     return (
         <div>
@@ -15,12 +20,14 @@ function Recommand(props) {
         </div>
     )
 }
-const mapStateToProps = state => ({
-    topBanners : state.recommend.topBanners,
-})
+export default memo(Recommand);
 
-const mapDispatchToProps = dispatch => ({
-    getBanners : () => dispatch(getTopBannerAction()),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(memo(Recommand));
+// const mapStateToProps = state => ({
+//     topBanners : state.recommend.topBanners,
+// })
+//
+// const mapDispatchToProps = dispatch => ({
+//     getBanners : () => dispatch(getTopBannerAction()),
+// })
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(memo(Recommand));
