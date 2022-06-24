@@ -1,16 +1,33 @@
 import React, {memo} from 'react';
-import { useRoutes } from "react-router-dom";
-import routes from './router';
-import MyHeader from '@/components/app-header';
-import MyFooter from '@/components/app-footer';
+import { Routes, Route } from "react-router-dom";
+//import routes from './router';
+import AppLayout from '@/layout/app-layout';
+// import Mine from '@/pages/mine';
+import Discover from '@/pages/discover';
+// import Friend from '@/pages/friend';
+import Recommend from '@/pages/discover/child-pages/recommend';
+import Album from '@/pages/discover/child-pages/album';
+import Dj from '@/pages/discover/child-pages/dj';
+import Songs from '@/pages/discover/child-pages/songs';
+import Artist from '@/pages/discover/child-pages/artist';
+import Ranking from '@/pages/discover/child-pages/ranking';
 
 export default memo(function App() {
-    let element = useRoutes(routes);
+    //let element = useRoutes(routes);
     return (
-        <>
-            <MyHeader />
-            {element}
-            <MyFooter />
-        </>
+        <Routes>
+            <Route path="/" element={<AppLayout /> }>
+                <Route index element={<Discover />} />
+                <Route path="discover" element={<Discover/ >}>
+                    <Route index element={<Recommend />} />
+                    <Route path="recommend" element={<Recommend />} />
+                    <Route path="album" element={<Album />} />
+                    <Route path="djradio" element={<Dj />} />
+                    <Route path="songs" element={<Songs />} />
+                    <Route path="artist" element={<Artist />} />
+                    <Route path="ranking" element={<Ranking />} />
+                </Route>
+            </Route>
+        </Routes>
     );
 })
