@@ -16,8 +16,8 @@ export default memo(function Discover(props) {
                         })
                     }
                 </TopMenu>
-                <Outlet />
             </div>
+            <Outlet />
         </DiscoverWrapper>
     )
 })
