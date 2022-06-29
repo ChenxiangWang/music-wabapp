@@ -14,3 +14,14 @@ export function getHotRecommend(limit) {
         }
     })
 }
+
+export function getNewAlbums (limit) {
+    return request({
+        url: '/top/album',
+
+        // 拼接的url参数
+        params: {
+            limit,
+        }
+    })
+}
