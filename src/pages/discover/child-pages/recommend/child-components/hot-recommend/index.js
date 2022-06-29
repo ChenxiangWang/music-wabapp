@@ -16,7 +16,7 @@ export default memo(function HotRecommend() {
     const dispatch = useDispatch();
     const { hotRecommends } = useSelector( state => ({
         hotRecommends: state.getIn(['recommend', 'hotRecommends'])
-    }));
+    }), shallowEqual);
     // other hooks
    useEffect(() => {
        dispatch(getHotRecommendAction(8));
@@ -27,7 +27,6 @@ export default memo(function HotRecommend() {
             <div className='recommend-list'>
                 {
                     hotRecommends.map((item, index) => {
-                        console.log(item);
                         return <SongsCover key={item.id} info={item}/>
                     })
                 }
